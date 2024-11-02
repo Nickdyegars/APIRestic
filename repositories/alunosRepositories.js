@@ -2,6 +2,17 @@ const {v4: uuidv4} = require('uuid');
 
 let alunos = []
 
+function create({nome, email, nome_curso}) {  
+  const aluno = {
+      id: uuidv4(),
+      nome,
+      email,
+      nome_curso,
+  };
+  alunos.push(aluno);
+  return aluno;
+}
+
 function update (id, {nome, email, nome_curso }) {
   const index = alunos.findIndex(aluno => aluno.id === id)
   if(index === -1) {
@@ -13,10 +24,24 @@ function update (id, {nome, email, nome_curso }) {
     email, 
     nome_curso
   }
+  return alunos[index]
+}
+function findAll() {
+  return alunos;
+}
 
+function findById(id){
+  const index = alunos.findIndex(aluno => aluno.id === id)
+  if(index === -1) {
+    return null
+  }
   return alunos[index]
 }
 
+
 module.exports = {
-  update
+  update,
+  create,
+  findAll,
+  findById
 }
