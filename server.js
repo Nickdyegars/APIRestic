@@ -31,6 +31,16 @@ app.put("/alunos/:id", (req, res) => {
   res.status(200).json(aluno);
 });
 
+app.delete("/alunos/:id", (req, res) => {
+  const { id } = req.params;
+  const aluno = remove(id);
+  if(!aluno){
+    res.status(404).json({error: 'Aluno não encontrado'})
+  }else{
+    res.status(204).send();
+  }
+});
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
