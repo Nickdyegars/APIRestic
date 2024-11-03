@@ -32,6 +32,11 @@ app.get('/alunos/:id', (req, res) => {
 app.put("/alunos/:id", (req, res) => {
   const { id } = req.params;
   const {nome, email, nome_curso } = req.body;
+
+  if (!id || !nome || !email || !nome_curso) {
+    return res.status(400).json({ error: 'Todos os campos (id, nome, email, nome_curso) devem estar preenchidos.'});
+  }
+
   const aluno = update(id, {nome, email, nome_curso });
   res.status(200).json(aluno);
 });
