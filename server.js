@@ -7,6 +7,11 @@ app.use(express.json());
 
 app.post('/alunos', (req, res) => {
   const { nome, email, nome_curso } = req.body;
+
+  if (!nome || !email || !nome_curso) {
+    return res.status(400).json({ error: 'Todos os campos (nome, email, nome_curso) devem estar preenchidos.'});
+  }
+
   const aluno = create({ nome, email, nome_curso});
   res.status(201).json(aluno);
 });
