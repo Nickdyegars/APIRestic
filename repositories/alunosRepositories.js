@@ -1,8 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 
-let alunos = [
-  { id: 1, nome: 'João', nome_curso: "Engenharia" }
-]
+let alunos = []
 
 function create({ nome, email, nome_curso }) {
   const aluno = {
